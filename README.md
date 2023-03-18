@@ -20,7 +20,7 @@ Lastly, in addition to presenting your projects next Friday, you will be require
 
 ## Planning & Presentation Requirements
 
-### Planning - Due This Thursday:
+### Planning:
 
 - You will share:
 
@@ -32,7 +32,7 @@ Lastly, in addition to presenting your projects next Friday, you will be require
 
 ### Presentation:
 
-You will have a maximum of 10 minutes to present your project following these guidelines:
+You will have to present your project following these guidelines:
 
 
 1. **Introduce the Project:**
