@@ -1,0 +1,37 @@
+
+body {
+  background-image: url(./sl_121019_25870_69.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.letters {
+    display: flex;
+    border: 2px dotted purple;
+    height: 70px;
+}
+
+.top-row {
+    display: inline-flex;
+    border: 1px solid white;
+    width: 20%;
+    margin: 10px;
+    color: aqua;
+}
+
+.middle-row {
+    display: inline-flex;
+    border: 1px solid white;
+    width: 20%;
+    margin: 10px;
+    color: aqua;
+}
+
+.bottom-row {
+    display: inline-flex;
+    border: 1px solid white;
+    width: 20%;
+    margin: 10px;
+    color: aqua;
+}
