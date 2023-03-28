@@ -58,6 +58,7 @@
     height: 50%;
     width: 100%;
 }
+
 .letters {
     display: flex;
     flex-direction: column;
