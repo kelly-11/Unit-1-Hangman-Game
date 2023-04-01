@@ -20,3 +20,13 @@ This was my initial low-fidelity wireframe.
 - Figma
 
 ## Getting started:
+Click the link to play!
+https://kelly-11.github.io/Unit-1-Hangman-Game/
+
+Notes: You can restart the game by refreshing the page. Game must be played on a full-size screen.
+
+## Next Steps:
+- I would add a reset button 
+- Fix the image appearing after entering in a wrong guess
+- Fix the incorrectGuesses to stop counting down and if the player never guessed a correct letter then the losing message never displays but if there is at least one correct letter guessed then the losing message does show.
+- Keep adjusting the CSS to improve the view of the game.
