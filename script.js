@@ -1,95 +1,130 @@
-//Variables for Categories, letters, guesses, screen
+let movies = ['The Avengers', 'Titanic', 'Halloween']
+let series = ['Last of Us', 'Squid Games', 'Friends']
+let actors = ['Pedro Pascal', 'Chris Evans', 'Kate Winslet']
+let word = ""
+let guess = 0
+let opacityCount = 0
+let incorrectGuesses = 4
+let imgName = ""
 
-// let selections = ['Movies', 'Series', 'Actors']
-// let letters = []
-let guesses = []
-let screen = []
-let movies =['AVENGERS', 'TITANIC'] //['The Avengers', 'Titanic', 'Halloween']
-let series = ['LOST', 'FRIENDS']//['Last of Us', 'Squid Games', 'Friends']
-let actors = ['PEDRO', 'EVANS']//['Pedro Pascal', 'Chris Evans', 'Kate Winslet']
-let word =""
 const moviesBtn = document.getElementById("1").addEventListener("click", selection)
-// console.log(moviesBtn)
+
 const seriesBtn = document.getElementById("2").addEventListener("click", selection)
-// console.log(seriesBtn)
+
 const actorsBtn = document.getElementById("3").addEventListener("click", selection)
-// console.log(actorsBtn)
 
 const blankEl = document.querySelector(".blank")
 
-const userInput = document.querySelector('.letters').addEventListener('click', letters)
+const keyboard = document.querySelector('.letters').addEventListener('click', letters)
 
+const screenImg = document.querySelector('.middle')
 
+const update = document.querySelector('.message')
 
-
-// function init() {
-//     screen = 
-//     guesses = [null, null, null, null, null, null, null, null, null, null, null, null]
-//     letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M']
-//     //render()
-// }
-// // Once a category is selected, randomly select a word within that category.
-// //Message will be update to 'Good luck!' once a category is selected
-// // Message will be updated to 'Why so series?' when two wrong selections have been made.
-// // Message will be updated to 'Wow! You're on a roll!' when two correct selections have been made in a row.
-// //Every correct letter will make a pieces of an image appear on the screen.
-
-
-// function render (){
-//     selection()
-//     updateDashes()
-//     updateMessage()
-//     updateScreen()
-// }
-
-function selection(opt, list){
-//   selections.forEach()
+function selection(opt){
 let event = opt.target
 if(event.id === "1") {
+    update.innerHTML = ' '
     event = movies[Math.floor(Math.random()*3)]
+    event = event.toUpperCase()
     word = event
    createDashes()
-   document.getElementsByClassName("btn").disabled = true
+   document.getElementById("1").disabled = true
+   document.getElementById("2").disabled = true
+   document.getElementById("3").disabled = true
 }else if (event.id === "2") {
+    update.innerHTML = ' '
     event = series[Math.floor(Math.random()*3)]
+    event = event.toUpperCase()
     word = event
     createDashes()
-    document.getElementsByClassName("btn").disabled = true
+    document.getElementById("1").disabled = true
+    document.getElementById("2").disabled = true
+    document.getElementById("3").disabled = true
 }else if (event.id === "3") {
+    update.innerHTML = ' '
     event = actors[Math.floor(Math.random()*3)]
+    event = event.toUpperCase()
     word = event
     createDashes()
-    document.getElementsByClassName("btn").disabled = true
+    document.getElementById("1").disabled = true
+    document.getElementById("2").disabled = true
+    document.getElementById("3").disabled = true
 }
-
 }
 
 function createDashes(){
     let secretWord = word
     for(let i = 0; i < secretWord.length; i++){
         let newBlank =  document.createElement('div')
-        newBlank.classList.add(`${secretWord[i]}`)
-        newBlank.innerHTML = '_'
-        newBlank.style.color = "white"
+        newBlank.innerHTML = '&nbsp;'
+        if(secretWord[i] !== " "){
+            newBlank.classList.add(`${secretWord[i]}`)
+            newBlank.innerHTML = '_'
+            newBlank.style.color = "white"
+        }
         blankEl.append(newBlank)
-        // console.dir(newBlank)
       }
+}
+
+function getImg (){
+   if(word === 'THE AVENGERS') {
+    imgName = 'avengers.jpeg'
+   }else if (word === 'TITANIC') {
+    imgName = 'Titanic.png'
+   }else if (word === 'HALLOWEEN') {
+    imgName = 'Halloween.jpg'
+   } else if (word === 'LAST OF US') {
+    imgName = 'LastOfUs.jpg'
+   } else if (word === 'SQUID GAMES') {
+    imgName = 'SquidGames.png'
+   } else if (word === 'FRIENDS') {
+    imgName = 'Friends.jpg'
+   } else if (word === 'PEDRO PASCAL') {
+    imgName = 'PedroPascal.jpg'
+   } else if (word === 'CHRIS EVANS') {
+    imgName = 'ChrisEvans.jpeg'
+   } else if (word === 'KATE WINSLET') {
+    imgName = 'kateWinslet.jpeg'
+   }  
 }
 
 function letters (evt){
     let letter = evt.target.id
     let secretWord = word
-    
+    getImg()
         if(secretWord.includes(letter)) {
-            let dash = document.querySelector(`.${letter}`)
-            dash.innerText = letter
+            guess++
+            if(guess === 1){
+                let dash = document.querySelectorAll(`.${letter}`)
+                dash.forEach((dash)=> {
+                    dash.innerText = letter
+                })
+                let img = document.createElement('img')
+                img.setAttribute('src', `${imgName}`)
+                screenImg.append(img)
+            }else if(guess > 1 && guess <= (secretWord.length + 3)){
+                let dash = document.querySelectorAll(`.${letter}`)
+                dash.forEach((dash)=> {
+                    dash.innerText = letter
+                })
+                let img = document.querySelector('img')
+                opacityCount+= .07
+                img.style.opacity = `${opacityCount}`
+            }
         }else {
-            console.log('Pick another letter')
-        }
-    
+            incorrectGuesses--
+            update.innerHTML = `You have ${incorrectGuesses} guesses left!`
+            if (incorrectGuesses === 0){
+                let img = document.querySelector('img')
+                opacityCount = 0
+                img.style.opacity = `${opacityCount}`
+                update.innerHTML = "Why so series? ;-) Let's put a smile on that face and try again!"
+            }
+        }    
 }
 
-//spaces, repeating letters, deactivating options button
+
 
 
 

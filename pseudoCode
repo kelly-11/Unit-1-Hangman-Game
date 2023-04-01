@@ -1,0 +1,19 @@
+//Let variables for movies, series, actors, word, guess, opacityCount, incorrectGuesses, imgName
+// Grab each category button by their ID & addEventListener then, include them in the the "function selection(){}"
+//Grab the blank div to use in the "function createDashes(){}"
+//Grab the .letters div and addEventListener to the letters this will be used in the "function letters(){}"
+//Grab the .middle div to be used in the "function letters(){}" to make the img appear in the .middle div
+//all imgs pertaining to possible word are stored in the "function imgs(){}"
+
+//---function selection starts game---//
+// Once a category is selected, it will randomly select a word within that selected category
+// All other category buttons will be disabled when a category is picked and the secret word is selected.
+// toUpperCase() to make all letters in the words capitalized to match the keyboard entries
+
+//---function createDashes---//
+// Once the word is selected the game will generate the needed empty dashes pertaining to that secretWord
+
+  //---function letters---//
+// An element was created within the .middle div so that an img belonging to that secretWord can begin to appear.
+// Every correct letter guessed will make the image belonging to that word start to appear
+// if the guess is incorrect then img opacity will remain the same but if the incorrect number of guesses is reached then img will disappear and losing message will appear
